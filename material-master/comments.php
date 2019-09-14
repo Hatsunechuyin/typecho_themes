@@ -3,8 +3,10 @@
 {
     $commentClass = '';
     $commentLevelClass = $comments->_levels > 0 ? ' comment-child' : ' comment-parent';  //评论层数大于0为子级，否则是父级
+    echo $comments->_levels;
     ?>
-    <div id="li-<?php $comments->theId(); ?>" class="comment mdl-color-text--grey-700 comment-body<?php
+    <li id="<?php $comments->theId(); ?>" class="comment mdl-color-text--grey-700 comment-body<?php
+     /*<li id="li-<?php $comments->theId(); ?>" class="comment mdl-color-text--grey-700 comment-body<?php*/
     if ($comments->_levels > 0) {
         echo ' comment-child';
         $comments->levelsAlt(' comment-level-odd', ' comment-level-even');
@@ -15,7 +17,7 @@
     echo $commentClass; ?>">
 
         <!-- Comment info -->
-        <header class="comment header">
+        <div class="comment header">
 
             <!-- Comment avatar -->
             <div id="comment__avatar">
@@ -29,7 +31,7 @@
                 <!--Comment date -->
                 <span><?php $comments->date('Y-m-d, H:i'); ?></span>
             </div>
-        </header>
+        </div>
 
         <!-- Comment content -->
         <div class="comment__text">
@@ -37,29 +39,29 @@
         </div>
 
         <!-- Comment actions -->
-        <nav class="comment__actions">
+        <div class="comment__actions">
             <!-- reply -->
             <?php $comments->reply('<button id="comment-reply-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
             <i class="material-icons" role="presentation">forum</i>
             <span class="visuallyhidden">reply comment</span>
             </button>'); ?>
             <!-- share -->
-            <button id="comment-share-<?php $comments->theId(); ?>-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="material-icons" role="presentation">share</i>
-                <span class="visuallyhidden">share comment</span>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="comment-share-<?php $comments->theId(); ?>-button">
-                <a class="md-menu-list-a" target="view_window" href="<?php $comments->permalink(); ?>">
-                    <li class="mdl-menu__item">在新标签页中打开</li>
-                </a>
-                <a class="md-menu-list-a" href="https://twitter.com/intent/tweet?text=<?php echo htmlspecialchars($comments->content); ?>+from&url=<?php $comments->permalink(); ?>">
-                    <li class="mdl-menu__item">分享到 Twitter</li>
-                </a>
-                <a class="md-menu-list-a" href="https://plus.google.com/share?url=<?php $comments->permalink(); ?>" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-                    <li class="mdl-menu__item">分享到 Google+</li>
-                </a>
-            </ul>
-        </nav>
+<!--            <button id="comment-share---><?php //$comments->theId(); ?><!---button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">-->
+<!--                <i class="material-icons" role="presentation">share</i>-->
+<!--                <span class="visuallyhidden">share comment</span>-->
+<!--            </button>-->
+<!--            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="comment-share---><?php //$comments->theId(); ?><!---button">-->
+<!--                <a class="md-menu-list-a" target="view_window" href="--><?php //$comments->permalink(); ?><!--">-->
+<!--                    <li class="mdl-menu__item">在新标签页中打开</li>-->
+<!--                </a>-->
+<!--                <a class="md-menu-list-a" href="https://twitter.com/intent/tweet?text=--><?php //echo htmlspecialchars($comments->content); ?><!--+from&url=--><?php //$comments->permalink(); ?><!--">-->
+<!--                    <li class="mdl-menu__item">分享到 Twitter</li>-->
+<!--                </a>-->
+<!--                <a class="md-menu-list-a" href="https://plus.google.com/share?url=--><?php //$comments->permalink(); ?><!--" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">-->
+<!--                    <li class="mdl-menu__item">分享到 Google+</li>-->
+<!--                </a>-->
+<!--            </ul>-->
+        </div>
 
         <!-- Comment answers -->
         <div class="comment__answers">
@@ -75,7 +77,7 @@
             <!--是否嵌套评论判断结束-->
         </div>
 
-    </div>
+    </li>
 
     <?php
 } ?>
@@ -91,7 +93,9 @@
 
                 <!-- Input form start -->
                 <form method="post" action="<?php $this->commentUrl() ?>">
-
+                    <div class="cancel-comment-reply">
+                        <?php $comments->cancelReply(); ?>
+                    </div>
                     <!-- If user has login -->
                     <?php if ($this->user->hasLogin()): ?>
 

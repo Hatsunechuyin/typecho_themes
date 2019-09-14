@@ -255,6 +255,7 @@
 </script>
 
 <?php $this->footer(); ?>
-
+<!-- <script type="text/javascript" color="0,0,255" opacity="0.7" zindex="999" count="99" src="js/bodybackground/canvas-nest.js"></script> -->
+<?php jsLsload('canvas-nest.js', 'js/bodybackground/canvas-nest.js'); ?>
 </body>
 </html>

@@ -25,34 +25,33 @@ $this->need('header.php'); ?>
         <div class="material-index mdl-grid">
 
             <?php if ($this->is('index') && $this->_currentPage == 1): ?>
-            <!-- Daily Pic -->
-            <div class="mdl-card mdl-shadow--<?php $this->options->CardElevation() ?>dp daily-pic mdl-cell mdl-cell--8-col index-top-block">
+                <!-- Daily Pic -->
+                <div class="mdl-card mdl-shadow--<?php $this->options->CardElevation() ?>dp daily-pic mdl-cell mdl-cell--8-col index-top-block">
                 <?php if (!empty($this->options->dailypic)): ?>
                 <div class="mdl-card__media mdl-color-text--grey-50"
                      style="background-image:url(<?php $this->options->dailypic() ?>)">
-                    <?php else: ?>
-                    <div class="mdl-card__media mdl-color-text--grey-50"
-                         style="background-image:url(<?php getThemeFile("img/daily_pic.png", true) ?>)">
-                        <?php endif; ?>
-                        <p class="index-top-block-slogan"><a
-                                    href="<?php $this->options->dailypicLink() ?>"><?php $this->options->slogan() ?></a>
-                        </p>
-                    </div>
+                <?php else: ?>
+                <div class="mdl-card__media mdl-color-text--grey-50"
+                     style="background-image:url(<?php getThemeFile("img/daily_pic.png", true) ?>)">
+            <?php endif; ?>
+                <p class="index-top-block-slogan"><a href="<?php $this->options->dailypicLink() ?>"><?php $this->options->slogan() ?></a>
+                </p>
+            </div>
 
-                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                        <!-- Author avatar -->
-                        <div id="author-avatar">
-                            <?php if (!empty($this->options->avatarURL)): ?>
-                                <img src="<?php $this->options->avatarURL() ?>" width="32px" height="32px"/>
-                            <?php else: ?>
-                                <?php $this->author->gravatar(32); ?>
-                            <?php endif; ?>
-                        </div>
-                        <div>
-                            <strong><?php $this->author(); ?></strong>
-                        </div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                    <!-- Author avatar -->
+                    <div id="author-avatar">
+                        <?php if (!empty($this->options->avatarURL)): ?>
+                            <img src="<?php $this->options->avatarURL() ?>" width="32px" height="32px"/>
+                        <?php else: ?>
+                            <?php $this->author->gravatar(32); ?>
+                        <?php endif; ?>
+                    </div>
+                    <div>
+                        <strong><?php $this->author(); ?></strong>
                     </div>
                 </div>
+            </div>
 
                 <!-- Blog info -->
                 <div class="mdl-card mdl-shadow--<?php $this->options->CardElevation() ?>dp something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop index-top-block">
@@ -106,12 +105,14 @@ $this->need('header.php'); ?>
                             </a>
                     </div>
                     <!-- Infomation -->
+                    <!--左上角主题标题-->
                     <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
                         <div>
                             <strong><?php $this->options->title(); ?></strong>
                         </div>
                         <div class="section-spacer"></div>
                         <!-- Pages button -->
+                        <!--文章标题整个的地方-->
                         <button id="show-pages-button"
                                 class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons" role="presentation">view_carousel</i>
@@ -180,10 +181,8 @@ $this->need('header.php'); ?>
 
                 <?php if ($this->getTotal() != 0): ?>
                     <?php while ($this->next()): ?>
-
                         <!-- Article module -->
                         <div class="post_entry-module mdl-card mdl-shadow--<?php $this->options->CardElevation() ?>dp mdl-cell mdl-cell--12-col <?php if (!empty($this->options->switch) && in_array('ShowLoadingLine', $this->options->switch)): ?>fade out<?php endif; ?>">
-
                             <!-- Article link & title -->
                             <?php if ($this->options->ThumbnailOption == '1'): ?>
                                 <div class="post-thumbnail-pure mdl-card__media mdl-color-text--grey-50 lazy "
@@ -262,7 +261,6 @@ $this->need('header.php'); ?>
                 <?php else: ?>
                     <!-- Article module -->
                     <div class="post_entry-module mdl-card mdl-shadow--<?php $this->options->CardElevation() ?>dp mdl-cell mdl-cell--12-col <?php if (!empty($this->options->switch) && in_array('ShowLoadingLine', $this->options->switch)): ?>fade out<?php endif; ?>">
-
                         <!-- Article link & title -->
                         <div class="post-thumbnail-pure mdl-card__media mdl-color-text--grey-50 lazy "
                             <?php getBackgroundLazyload(showThumbnail($this)); ?>>

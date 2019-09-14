@@ -1,0 +1,11 @@
+.comment-list li {
+    padding: 14px;
+    margin-top: 10px;
+    border: 1px solid #39c5bb;
+}
+.comment-list, .comment-list ol {
+     list-style: none;
+     list-style-type: none;
+     list-style-position: initial;
+     list-style-image: initial;
+}
